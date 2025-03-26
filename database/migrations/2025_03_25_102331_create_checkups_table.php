@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periksa', function (Blueprint $table) {
+        Schema::create('periksas', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('id_pasien')->constrained(table:'users', indexName:'index_detail_pasien');
@@ -23,11 +23,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('detail_periksa', function (Blueprint $table) {
+        Schema::create('detail_periksas', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('id_periksa')->constrained(table:'periksa', indexName:'index_detail_periksa');
-            $table->foreignId('id_obat')->constrained(table:'obat', indexName:'index_detail_obat');
+            $table->foreignId('id_periksa')->constrained(table:'periksas', indexName:'index_detail_periksa');
+            $table->foreignId('id_obat')->constrained(table:'obats', indexName:'index_detail_obat');
 
             $table->timestamps();
         });
