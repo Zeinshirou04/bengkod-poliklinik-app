@@ -3,23 +3,19 @@
         <div class="p-4 flex justify-center items-center">
             <x-icon.icons />
         </div>
-        @php
-            $route = Route::currentRouteName();
-            $role = '2';
-        @endphp
         <div class="w-full h-full mt-12 flex flex-col">
             <x-buttons.sidebar-button
-                route="{{ $role === '1' ? 'dashboard.doctor.overview' : 'dashboard.patient.overview' }}"
-                active="{{ $role === '1' ? Route::currentRouteName() === 'dashboard.doctor.overview' : Route::currentRouteName() === 'dashboard.patient.overview' }}"
+                route="{{ $roleId === '2' ? 'dashboard.doctor.overview' : 'dashboard.patient.overview' }}"
+                active="{{ $roleId === '2' ? Route::currentRouteName() === 'dashboard.doctor.overview' : Route::currentRouteName() === 'dashboard.patient.overview' }}"
                 label="Overview" />
             <x-buttons.sidebar-button
-                route="{{ $role === '1' ? 'dashboard.doctor.periksa' : 'dashboard.patient.periksa' }}"
-                active="{{ $role === '1' ? Route::currentRouteName() === 'dashboard.doctor.periksa' : Route::currentRouteName() === 'dashboard.patient.periksa' }}"
+                route="{{ $roleId === '2' ? 'dashboard.doctor.periksa' : 'dashboard.patient.periksa' }}"
+                active="{{ $roleId === '2' ? Route::currentRouteName() === 'dashboard.doctor.periksa' : Route::currentRouteName() === 'dashboard.patient.periksa' }}"
                 label="Periksa" />
             <x-buttons.sidebar-button
-                route="{{ $role === '1' ? 'dashboard.doctor.obat' : 'dashboard.patient.riwayat' }}"
-                active="{{ $role === '1' ? Route::currentRouteName() === 'dashboard.doctor.obat' : Route::currentRouteName() === 'dashboard.patient.riwayat' }}"
-                label="{{ $role === '1' ? 'Obat' : 'Riwayat' }}" />
+                route="{{ $roleId === '2' ? 'dashboard.doctor.obat' : 'dashboard.patient.riwayat' }}"
+                active="{{ $roleId === '2' ? Route::currentRouteName() === 'dashboard.doctor.obat' : Route::currentRouteName() === 'dashboard.patient.riwayat' }}"
+                label="{{ $roleId === '2' ? 'Obat' : 'Riwayat' }}" />
         </div>
     </nav>
 </aside>

@@ -48,6 +48,16 @@ class User extends Authenticatable
         ];
     }
 
+    private $roles = [
+        '1' => 'pasien',
+        '2' => 'dokter'
+    ];
+
+    public function isRole(string $r) {
+        $userRole = $this->roles[$this->role];
+        return $userRole === $r;
+    }
+
     /**
      * Get all of the comments for the User
      *

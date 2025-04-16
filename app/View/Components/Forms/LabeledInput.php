@@ -3,8 +3,9 @@
 namespace App\View\Components\Forms;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\User;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class LabeledInput extends Component
 {
@@ -16,7 +17,8 @@ class LabeledInput extends Component
         public string $type = "text",
         public bool $required = false,
         public string $label = "Label",
-        public string $placeholder = "Write here..."
+        public string $placeholder = "Write here...",
+        public string $model
     )
     {
         //

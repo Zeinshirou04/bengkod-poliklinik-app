@@ -38,11 +38,11 @@ class Periksa extends Model
     }
 
     /**
-     * Get all of the comments for the Periksa
+     * Get all of the detail for the Periksa
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments(): HasMany
+    public function detailPeriksa(): HasMany
     {
         return $this->hasMany(DetailPeriksa::class, 'id_periksa', 'id');
     }

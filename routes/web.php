@@ -15,8 +15,9 @@ Route::get('/', function () {
 });
 
 Route::prefix('auth')->group(function () {
-    Route::resource('register', RegisCredentialsController::class)->only(['create', 'store']);
-    Route::resource('login', AuthenticatedSessionController::class)->only(['create', 'store', 'delete']);
+    Route::resource('register', RegisCredentialsController::class)->only(['create']);
+    Route::resource('login', AuthenticatedSessionController::class)->only(['create']);
+    Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('login.destroy');
 });
 
 Route::prefix('dashboard')->group(function () {

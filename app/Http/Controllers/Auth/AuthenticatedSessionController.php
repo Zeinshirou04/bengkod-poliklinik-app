@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -15,19 +16,12 @@ class AuthenticatedSessionController extends Controller
         return view('pages.auth.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy() {
+        try {
+            Auth::logout();
+            return redirect()->route('login.create');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

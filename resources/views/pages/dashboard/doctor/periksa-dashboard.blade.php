@@ -22,26 +22,38 @@
                                 <th class="pb-4 pt-2">Nama Pasien</th>
                                 <th class="pb-4 pt-2">Tanggal Periksa</th>
                                 <th class="pb-4 pt-2">Catatan</th>
-                                <th class="pb-4 pt-2">Biaya Periksa</th>
+                                <th class="pb-4 pt-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-t-1 border-gray-300">
-                                <th class="pb-2 pt-4">1</th>
-                                <td class="pb-2 pt-4">1</td>
-                                <td class="pb-2 pt-4">Farras</td>
-                                <td class="pb-2 pt-4">2025-05-02</td>
-                                <td class="pb-2 pt-4">Kosong</td>
-                                <td class="pb-2 pt-4">Rp. 24.000,-</td>
-                            </tr>
-                            <tr>
-                                <th class="py-2">1</th>
-                                <td class="py-2">1</td>
-                                <td class="py-2">Farras</td>
-                                <td class="py-2">2025-05-02</td>
-                                <td class="py-2">Kosong</td>
-                                <td class="py-2">Rp. 24.000,-</td>
-                            </tr>
+                            @if (is_null($periksas))
+                                <tr class="border-t-1 border-gray-300">
+                                    <td colspan="5" class="pb-2 pt-4 text-center">Belum Ada Periksa</td>
+                                </tr>
+                            @else
+                                @foreach ($periksas as $periksa)
+                                    <tr>
+                                        <th class="pb-2 pt-4">1</th>
+                                        <td class="pb-2 pt-4">{{ $periksa->id }}</td>
+                                        <td class="pb-2 pt-4">{{ $periksa->pasien->nama }}</td>
+                                        @if (is_null($periksa->tgl_periksa))
+                                            <td class="pb-2 pt-4">Belum Ditentukan</td>
+                                        @else
+                                            <td class="pb-2 pt-4">{{ $periksa->tgl_periksa }}</td>
+                                        @endif
+                                        @if (is_null($periksa->catatan))
+                                            <td class="pb-2 pt-4">Belum Ditentukan</td>
+                                        @else
+                                            <td class="pb-2 pt-4">{{ $periksa->catatan }}</td>
+                                        @endif
+                                        <td class="py-2">
+                                            <button class="bg-yellow-600 text-white px-3 py-1 rounded-md">Detail</button>
+                                            <button class="bg-blue-500 text-white px-3 py-1 rounded-md">Edit</button>
+                                            <button class="bg-red-500 text-white px-3 py-1 rounded-md">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

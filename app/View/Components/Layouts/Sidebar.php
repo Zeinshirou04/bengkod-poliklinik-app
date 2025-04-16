@@ -4,6 +4,7 @@ namespace App\View\Components\Layouts;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -21,6 +22,7 @@ class Sidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layouts.sidebar');
+        $roleId = Auth::user()->role;
+        return view('components.layouts.sidebar', compact('roleId'));
     }
 }

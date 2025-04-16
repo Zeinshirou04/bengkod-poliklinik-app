@@ -27,24 +27,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-t-1 border-gray-300">
-                                <th class="pb-2 pt-4">1</th>
-                                <td class="pb-2 pt-4">1</td>
-                                <td class="pb-2 pt-4">Farras</td>
-                                <td class="pb-2 pt-4">2025-05-02</td>
-                                <td class="pb-2 pt-4">Kosong</td>
-                                <td class="pb-2 pt-4">Paracetamol</td>
-                                <td class="pb-2 pt-4">Rp. 24.000,-</td>
-                            </tr>
-                            <tr>
-                                <th class="py-2">1</th>
-                                <td class="py-2">1</td>
-                                <td class="py-2">Farras</td>
-                                <td class="py-2">2025-05-02</td>
-                                <td class="py-2">Kosong</td>
-                                <td class="py-2">Methamphetamine</td>
-                                <td class="py-2">Rp. 24.000,-</td>
-                            </tr>
+                            @if (is_null($details) || count($details) < 1)
+                                <tr class="border-t-1 border-gray-300">
+                                    <td colspan="7" class="pb-2 pt-4 text-center">Belum Ada Periksa</td>
+                                </tr>
+                            @else
+                                @foreach ($details as $detail)
+                                    <tr>
+                                        <th class="pb-2 pt-4">1</th>
+                                        <td class="pb-2 pt-4">{{ $detail->id_periksa }}</td>
+                                        <td class="pb-2 pt-4">{{ $detail->periksa->dokter->nama }}</td>
+                                        @if (is_null($detail->periksa->tgl_periksa))
+                                            <td class="pb-2 pt-4">Belum Ditentukan</td>
+                                        @else
+                                            <td class="pb-2 pt-4">{{ $detail->periksa->tgl_periksa }}</td>
+                                        @endif
+                                        @if (is_null($detail->periksa->catatan))
+                                            <td class="pb-2 pt-4">Belum Ditentukan</td>
+                                        @else
+                                            <td class="pb-2 pt-4">{{ $detail->periksa->catatan }}</td>
+                                        @endif
+                                        @if (is_null($detail->obat))
+                                            <td class="pb-2 pt-4">Belum Ditentukan</td>
+                                        @else
+                                            @if (is_null($detail->obat->nama_obat))
+                                                <td class="pb-2 pt-4">Belum Ditentukan</td>
+                                            @else
+                                                <td class="pb-2 pt-4">{{ $detail->obat->nama_obat }}</td>
+                                            @endif
+                                        @endif
+                                        @if (is_null($detail->periksa->biaya_periksa))
+                                            <td class="pb-2 pt-4">Belum Ditentukan</td>
+                                        @else
+                                            <td class="pb-2 pt-4">{{ $detail->periksa->biaya_periksa }}</td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

@@ -14,12 +14,4 @@ class RegisCredentialsController extends Controller
     {
         return view('pages.auth.register');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 }

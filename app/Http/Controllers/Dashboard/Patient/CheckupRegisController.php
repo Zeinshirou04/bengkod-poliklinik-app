@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard\Patient;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Checkup\Periksa;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CheckupRegisController extends Controller
 {
@@ -12,15 +14,9 @@ class CheckupRegisController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard.patient.periksa-dashboard');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $userId = Auth::user()->getAuthIdentifier();
+        $periksas = Periksa::where('id_pasien', $userId)->get();
+        return view('pages.dashboard.patient.periksa-dashboard', compact('periksas'));
     }
 
     /**
